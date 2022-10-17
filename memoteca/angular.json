@@ -102,5 +102,7 @@
       }
     }
   },
-  "defaultProject": "memoteca"
+  "cli": {
+    "analytics": "d41c62e5-2862-4f79-8dc5-0db368ebc141"
+  }
 }
