@@ -9,6 +9,9 @@ import { Observable } from 'rxjs';
 export class PensamentoService {
 
   private readonly API = 'http://localhost:3000/pensamentos'
+  pensamento: any;
+  service: any;
+  router: any;
 
   constructor(private http: HttpClient) { }
 
@@ -20,4 +23,24 @@ export class PensamentoService {
     return this.http.post<Pensamento>(this.API, pensamento)
   }
 
+  excluir(id: number): Observable<Pensamento>{
+    const url = `${this.API}/${id}`
+    return this.http.delete<Pensamento>(url)
+  }
+
+  buscarPorId(id: number): Observable<Pensamento>{
+    const url = `${this.API}/${id}`
+    return this.http.get<Pensamento>(url)
+  }
+
+  excluirPensamento (){
+    if(this.pensamento.id) {
+      this.service.excluir(this.pensamento.id).subscribe(() => {
+        this.router.navigate(['/listarPensamento'])
+      })
+    }
+  }
+  cancelar (){
+    this.router.navigate(['/listarPensamento'])
+  }
 }
